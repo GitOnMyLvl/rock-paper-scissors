@@ -27,28 +27,11 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    while (playerWins < 3 && computerWins < 3) {
-        let playerSelection = prompt("Pick Rock, Paper or Scissors");
-        const computerSelection = getComputerChoice();
-        const result = playRound(playerSelection, computerSelection);
+const buttons = document.getElementsByTagName('button');
+
+Array.from(buttons).forEach(function (button) {
+    button.addEventListener('click', function () {
+        const result = playRound(this.textContent, getComputerChoice());
         console.log(result);
-        if (result.includes("win")) {
-            playerWins++;
-        }
-        else if (result.includes("lose")) {
-            computerWins++;
-        }
-    }
-
-    if (playerWins === 3) {
-        return "You win!";
-    }
-    else {
-        return "You lose!";
-    }
-}
-
-
-
-console.log(game());
+    });
+});
